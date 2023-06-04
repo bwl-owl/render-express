@@ -4,7 +4,7 @@ const port = process.env.PORT || 3001;
 require("dotenv").config();  
 
 const { MongoClient } = require("mongodb");
-const mongoClient = new MongoClient(`mongodb+srv://2linbw:${process.env.MONGO_DB_PASSWORD}@project3.vpl2zcq.mongodb.net/?retryWrites=true&w=majority`)
+const mongoClient = new MongoClient(process.env.MONGO_DB_CONNECTION_STRING);
 
 let testCollection;
 
@@ -21,7 +21,6 @@ app.get("/api/test", (_, response) => {
     });
 });
 
-// POST challenge
 app.post("/api/test", (request, response) => {
     testCollection.insertOne(request.body).then((_) => {
         response.json();
