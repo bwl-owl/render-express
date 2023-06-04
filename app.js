@@ -15,6 +15,8 @@ mongoClient.connect().then(_ => {
     console.log(error);
 })
 
+app.use(express.json());
+
 app.get("/api/test", (_, response) => {
     testCollection.find().toArray().then((result) => {
         response.json(result);
